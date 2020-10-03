@@ -1060,6 +1060,13 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@lottiefiles/react-lottie-player@^2.1.8":
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/@lottiefiles/react-lottie-player/-/react-lottie-player-2.1.8.tgz#131d05e13c3851cf0b2ce9b7bd38652e22078857"
+  integrity sha512-Yz6aTOCDgOK1jbvSyAv1/HicCwf+Gu62Fu6PrUkMgJsKusLmwyEIJpyR21GNOmJLMZOQWsEMbGTyEOLqufB8Tg==
+  dependencies:
+    lottie-web "^5.6.0"
+
 "@next/react-dev-overlay@9.5.3":
   version "9.5.3"
   resolved "https://registry.yarnpkg.com/@next/react-dev-overlay/-/react-dev-overlay-9.5.3.tgz#3275301f08045ecc709e3273031973a1f5e81427"
@@ -3904,6 +3911,11 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
+
+lottie-web@^5.6.0:
+  version "5.7.3"
+  resolved "https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.7.3.tgz#dbe542270665be5dd5b32deae19e27de6e77728c"
+  integrity sha512-ftN4AdiNmtoVpCfN1doiUIUbhOrDSMikH1Yl64/xO5lzQ31AO0+G82bqrCNHIW5Ec2zE/g7y4iz7zBR1YJwDaA==
 
 lru-cache@6.0.0:
   version "6.0.0"
