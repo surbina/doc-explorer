@@ -2,27 +2,19 @@ export enum DocumentType {
   MEDICAL_HISTORY = 'MEDICAL_HISTORY',
 }
 
-export enum FlagTypes {
+export enum FeatureType {
+  MEDICAL_HISTORY = 'MEDICAL_HISTORY',
   FOLLOW_UP = 'PrimaryCareProvider/FollowUp',
   HEART_FAILURE = 'CardiacFaliure/Symptoms',
-}
-
-export enum ProblemTypes {
   SLEEP_APNEA = 'SleepApnea',
   GERD = 'GERD',
-}
-
-export enum AllergiesTypes {
   PENICILLIN = 'Penicillin',
-}
-
-export enum MedicationType {
   ASPIRIN = 'Aspirin',
 }
 
-export interface Feature<T> {
+export interface Feature {
   id: string;
-  type: T;
+  type: FeatureType;
   humanName: string;
   meta: {
     top: number;
@@ -33,14 +25,48 @@ export interface Feature<T> {
 export interface Page {
   id: string;
   pageAssetUrl: string;
-  flags?: Array<Feature<FlagTypes>>;
-  medications?: Array<Feature<MedicationType>>;
-  problems?: Array<Feature<ProblemTypes>>;
-  allergies?: Array<Feature<AllergiesTypes>>;
+  flags?: Array<string>;
+  medications?: Array<string>;
+  problems?: Array<string>;
+  allergies?: Array<string>;
 }
 
 export interface Document {
   id: string;
   type: DocumentType;
   pages: Array<Page>;
+  features: Record<string, Feature>;
 }
+
+export interface DocumentState {
+  selectedFeature: string | null;
+  pendingReviewFeatures: Array<string>;
+  completedFeatures: Array<string>;
+}
+
+export enum DocumentStateActionTypes {
+  SELECT_FEATURE = 'SELECT_FEATURE',
+  CONFIRM_FEATURE = 'CONFIRM_FEATURE',
+  UNCONFIRM_FEATURE = 'UNCONFIRM_FEATURE',
+  REMOVE_FEATURE = 'REMOVE_FEATURE',
+}
+
+export type DocumentStateAction =
+  | {
+      type: DocumentStateActionTypes.SELECT_FEATURE;
+      id: string;
+    }
+  | {
+      type: DocumentStateActionTypes.CONFIRM_FEATURE;
+      id: string;
+    }
+  | {
+      type: DocumentStateActionTypes.UNCONFIRM_FEATURE;
+      id: string;
+    }
+  | {
+      type: DocumentStateActionTypes.REMOVE_FEATURE;
+      id: string;
+    };
+
+export type DocumentStateDispatch = (action: DocumentStateAction) => void;

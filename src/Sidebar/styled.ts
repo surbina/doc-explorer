@@ -5,6 +5,7 @@ export const SidebarWrapper = styled.aside`
   overflow: auto;
   padding-top: 7.5rem;
   transform: translateZ(0);
+  border-left: 1px solid #f0f0f0;
 `;
 
 // Styled migrated from the provided source code

@@ -1,23 +1,13 @@
-import axios from 'axios';
 import * as React from 'react';
-import { useQuery } from 'react-query';
 import DocumentReader from 'src/DocumentReader';
+import { DocumentStateProvider } from 'src/DocumentState';
 import Header from 'src/Header';
 import Sidebar from 'src/Sidebar';
 import Container from 'src/styled/Container';
-import { Document } from 'src/types';
-
-async function fetchDocument(key: string, { id }: { id: string }) {
-  const response = await axios.get(`/api/document/${id}`);
-
-  return response.data;
-}
+import useDocument from 'src/useDocument';
 
 export default function DocExplorer() {
-  const { data, isLoading } = useQuery<Document>(
-    ['document', { id: '1' }],
-    fetchDocument
-  );
+  const { data, isLoading } = useDocument('1');
 
   if (isLoading) {
     // TODO: handle loading states better (show an spinner or something)
@@ -26,9 +16,11 @@ export default function DocExplorer() {
 
   return (
     <Container>
-      <Header />
-      <DocumentReader document={data} />
-      <Sidebar />
+      <DocumentStateProvider document={data}>
+        <Header />
+        <DocumentReader document={data} />
+        <Sidebar />
+      </DocumentStateProvider>
     </Container>
   );
 }
