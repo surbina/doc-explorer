@@ -6,6 +6,16 @@ export const SidebarWrapper = styled.aside`
   padding-top: 7.5rem;
   transform: translateZ(0);
   border-left: 1px solid #f0f0f0;
+
+  @media (max-width: 1024px) {
+    position: fixed;
+    z-index: 1000;
+    width: 320px;
+    height: 100vh;
+    right: ${({ isOpen }) => (isOpen ? '0px' : '-320px')};
+    background-color: #fff;
+    transition: all 0.4s cubic-bezier(0.15, 0.9, 0.34, 0.95);
+  }
 `;
 
 // Styled migrated from the provided source code

@@ -14,6 +14,7 @@ function reducer(
         ...state,
         selectedFeature: action.id,
         showBanner: action.featureGroup,
+        showOutline: true,
       };
     }
 
@@ -57,6 +58,13 @@ function reducer(
       return {
         ...state,
         hoveredFeature: action.id,
+      };
+    }
+
+    case DocumentStateActionTypes.SET_OUTLINE_STATE: {
+      return {
+        ...state,
+        showOutline: action.showOutline,
       };
     }
 

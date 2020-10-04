@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Document } from 'src/types';
+import { Document, FeaturesGroup } from 'src/types';
 
 import Page from './Page';
 import { DocumentReaderWrapper } from './styled';
@@ -14,18 +14,30 @@ function DocumentReader({
   return (
     <DocumentReaderWrapper>
       {pages.map((page) => {
-        const featureIds = [
-          ...(page.medications || []),
-          ...(page.allergies || []),
-          ...(page.problems || []),
-          ...(page.flags || []),
+        const extendedFeatures = [
+          ...(page.medications || []).map((id) => ({
+            ...features[id],
+            group: FeaturesGroup.MEDICATION,
+          })),
+          ...(page.allergies || []).map((id) => ({
+            ...features[id],
+            group: FeaturesGroup.ALLERGY,
+          })),
+          ...(page.problems || []).map((id) => ({
+            ...features[id],
+            group: FeaturesGroup.PROBLEM,
+          })),
+          ...(page.flags || []).map((id) => ({
+            ...features[id],
+            group: FeaturesGroup.FLAG,
+          })),
         ];
 
         return (
           <Page
             key={page.id}
             pageAssetUrl={page.pageAssetUrl}
-            features={featureIds.map((id) => features[id])}
+            features={extendedFeatures}
           />
         );
       })}

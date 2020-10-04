@@ -37,6 +37,7 @@ function getInitialState(document: Document): DocumentState {
     pendingReviewFeatures: Object.keys(document.features),
     completedFeatures: [],
     showBanner: null,
+    showOutline: false, // this will be used on low resolution devices only
   };
 }
 

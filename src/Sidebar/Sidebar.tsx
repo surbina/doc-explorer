@@ -1,6 +1,8 @@
 import { Player } from '@lottiefiles/react-lottie-player';
 import * as React from 'react';
 
+import { useDocumentState, useDocumentDispatch } from '../DocumentState';
+import { DocumentStateActionTypes } from '../types';
 import Outline from './Outline';
 import { SidebarWrapper, UndoWrapper, RedoWrapper } from './styled';
 
@@ -11,11 +13,31 @@ import { SidebarWrapper, UndoWrapper, RedoWrapper } from './styled';
 //    - Leave one implementation example of what I tried to do using the Undo button
 //    - Replace the rest of the lottie animations with static images
 
-function Document() {
+function Sidebar() {
   const undoPlayer = React.useRef<any>(); // eslint-disable-line
+  const sidebarRef = React.useRef(null);
+  const { showOutline } = useDocumentState();
+  const dispatch = useDocumentDispatch();
+
+  React.useEffect(() => {
+    function handleClickOutside(event) {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        dispatch({
+          type: DocumentStateActionTypes.SET_OUTLINE_STATE,
+          showOutline: false,
+        });
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [dispatch]);
 
   return (
-    <SidebarWrapper>
+    <SidebarWrapper isOpen={showOutline} ref={sidebarRef}>
       <UndoWrapper
         onMouseEnter={() => undoPlayer.current.play()}
         onMouseLeave={() => {
@@ -37,4 +59,4 @@ function Document() {
   );
 }
 
-export default Document;
+export default Sidebar;

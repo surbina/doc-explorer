@@ -58,7 +58,7 @@ function OnboardingBanner() {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [bannerRef, onboardingReady, showBanner]);
+  }, [onboardingReady, showBanner]);
 
   // If we already showed this onboarding message then we bail out
   if (!showBanner || onboardingReady[showBanner]) {

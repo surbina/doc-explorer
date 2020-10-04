@@ -59,6 +59,7 @@ export interface DocumentState {
   pendingReviewFeatures: Array<string>;
   completedFeatures: Array<string>;
   showBanner: FeaturesGroup | null;
+  showOutline: boolean;
 }
 
 export enum DocumentStateActionTypes {
@@ -67,6 +68,7 @@ export enum DocumentStateActionTypes {
   UNCONFIRM_FEATURE = 'UNCONFIRM_FEATURE',
   REMOVE_FEATURE = 'REMOVE_FEATURE',
   HOVER_FEATURE = 'HOVER_FEATURE',
+  SET_OUTLINE_STATE = 'SET_OUTLINE_STATE',
 }
 
 export type DocumentStateAction =
@@ -90,6 +92,10 @@ export type DocumentStateAction =
   | {
       type: DocumentStateActionTypes.HOVER_FEATURE;
       id: string | null;
+    }
+  | {
+      type: DocumentStateActionTypes.SET_OUTLINE_STATE;
+      showOutline: boolean;
     };
 
 export type DocumentStateDispatch = (action: DocumentStateAction) => void;

@@ -3,14 +3,11 @@ import styled from 'styled-components';
 export const OnboardingBannerWrapper = styled.div`
   grid-area: onboarding-banner;
 
+  width: 100%;
   border-top: 1px solid #f0f0f0;
-  position: fixed;
   padding: 4rem 0;
-  bottom: 16px;
   background-color: #fff;
   text-align: center;
-  width: calc(100% - 352px);
-  left: 32px;
   opacity: 1;
   visibility: visible;
   transition: all 0.4s cubic-bezier(0.15, 0.9, 0.34, 0.95);

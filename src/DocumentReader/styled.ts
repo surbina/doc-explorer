@@ -14,6 +14,10 @@ export const PageWrapper = styled.div`
   transform-origin: top center;
   transition: all 0.5s cubic-bezier(0.15, 0.9, 0.34, 0.95);
   transform: translateZ(0);
+
+  @media (max-width: 1024px) {
+    width: 80%;
+  }
 `;
 
 export const Image = styled.img`
