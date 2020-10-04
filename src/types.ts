@@ -3,7 +3,6 @@ export enum DocumentType {
 }
 
 export enum FeatureType {
-  MEDICAL_HISTORY = 'MEDICAL_HISTORY',
   FOLLOW_UP = 'PrimaryCareProvider/FollowUp',
   HEART_FAILURE = 'CardiacFaliure/Symptoms',
   SLEEP_APNEA = 'SleepApnea',
@@ -11,6 +10,22 @@ export enum FeatureType {
   PENICILLIN = 'Penicillin',
   ASPIRIN = 'Aspirin',
 }
+
+export enum FeaturesGroup {
+  FLAG = 'FLAG',
+  PROBLEM = 'PROBLEM',
+  ALLERGY = 'ALLERGY',
+  MEDICATION = 'MEDICATION',
+}
+
+export const FeatureMap = {
+  [FeatureType.FOLLOW_UP]: FeaturesGroup.FLAG,
+  [FeatureType.HEART_FAILURE]: FeaturesGroup.FLAG,
+  [FeatureType.GERD]: FeaturesGroup.PROBLEM,
+  [FeatureType.SLEEP_APNEA]: FeaturesGroup.PROBLEM,
+  [FeatureType.PENICILLIN]: FeaturesGroup.ALLERGY,
+  [FeatureType.ASPIRIN]: FeaturesGroup.MEDICATION,
+};
 
 export interface Feature {
   id: string;

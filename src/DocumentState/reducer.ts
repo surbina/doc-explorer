@@ -39,6 +39,8 @@ function reducer(
     case DocumentStateActionTypes.REMOVE_FEATURE: {
       return {
         ...state,
+        selectedFeature:
+          state.selectedFeature === action.id ? null : state.selectedFeature,
         pendingReviewFeatures: state.pendingReviewFeatures.filter(
           (featureId) => featureId !== action.id
         ),
