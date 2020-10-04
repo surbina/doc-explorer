@@ -26,7 +26,20 @@ function GroupItem({ feature, isActive, footerActionType }: GroupItemProps) {
   const dispatch = useDocumentDispatch();
 
   return (
-    <GroupItemWrapper isActive={isActive}>
+    <GroupItemWrapper
+      isActive={isActive}
+      onMouseEnter={() =>
+        dispatch({
+          type: DocumentStateActionTypes.HOVER_FEATURE,
+          id: feature.id,
+        })
+      }
+      onMouseLeave={() =>
+        dispatch({
+          type: DocumentStateActionTypes.HOVER_FEATURE,
+          id: null,
+        })
+      }>
       <GroupItemTitle
         onClick={() =>
           dispatch({

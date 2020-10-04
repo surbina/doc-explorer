@@ -8,12 +8,27 @@ interface DocumentReaderProps {
   document: Document;
 }
 
-function DocumentReader({ document }: DocumentReaderProps) {
+function DocumentReader({
+  document: { pages, features },
+}: DocumentReaderProps) {
   return (
     <DocumentReaderWrapper>
-      {document.pages.map((page) => (
-        <Page key={page.id} page={page} />
-      ))}
+      {pages.map((page) => {
+        const featureIds = [
+          ...(page.medications || []),
+          ...(page.allergies || []),
+          ...(page.problems || []),
+          ...(page.flags || []),
+        ];
+
+        return (
+          <Page
+            key={page.id}
+            pageAssetUrl={page.pageAssetUrl}
+            features={featureIds.map((id) => features[id])}
+          />
+        );
+      })}
     </DocumentReaderWrapper>
   );
 }

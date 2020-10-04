@@ -55,6 +55,7 @@ export interface Document {
 
 export interface DocumentState {
   selectedFeature: string | null;
+  hoveredFeature: string | null;
   pendingReviewFeatures: Array<string>;
   completedFeatures: Array<string>;
 }
@@ -64,12 +65,13 @@ export enum DocumentStateActionTypes {
   CONFIRM_FEATURE = 'CONFIRM_FEATURE',
   UNCONFIRM_FEATURE = 'UNCONFIRM_FEATURE',
   REMOVE_FEATURE = 'REMOVE_FEATURE',
+  HOVER_FEATURE = 'HOVER_FEATURE',
 }
 
 export type DocumentStateAction =
   | {
       type: DocumentStateActionTypes.SELECT_FEATURE;
-      id: string;
+      id: string | null;
     }
   | {
       type: DocumentStateActionTypes.CONFIRM_FEATURE;
@@ -82,6 +84,10 @@ export type DocumentStateAction =
   | {
       type: DocumentStateActionTypes.REMOVE_FEATURE;
       id: string;
+    }
+  | {
+      type: DocumentStateActionTypes.HOVER_FEATURE;
+      id: string | null;
     };
 
 export type DocumentStateDispatch = (action: DocumentStateAction) => void;

@@ -52,6 +52,13 @@ function reducer(
       };
     }
 
+    case DocumentStateActionTypes.HOVER_FEATURE: {
+      return {
+        ...state,
+        hoveredFeature: action.id,
+      };
+    }
+
     default:
       throw new Error('Invalid Document State Action');
   }

@@ -1,16 +1,26 @@
 import * as React from 'react';
-import { Page as PageType } from 'src/types';
+import { Feature } from 'src/types';
 
+import FeatureIndicator from './FeatureIndicator';
 import { PageWrapper, Image } from './styled';
 
 interface PageProps {
-  page: PageType;
+  pageAssetUrl: string;
+  features: Array<Feature>;
 }
 
-function Page({ page }: PageProps) {
+function Page({ pageAssetUrl, features }: PageProps) {
   return (
     <PageWrapper>
-      <Image src={page.pageAssetUrl} alt="" />
+      <Image src={pageAssetUrl} alt="" />
+      {features.map((feature) => (
+        <FeatureIndicator
+          key={feature.id}
+          id={feature.id}
+          top={feature.meta.top}
+          left={feature.meta.left}
+        />
+      ))}
     </PageWrapper>
   );
 }
