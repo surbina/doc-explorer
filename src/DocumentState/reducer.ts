@@ -13,6 +13,7 @@ function reducer(
       return {
         ...state,
         selectedFeature: action.id,
+        showBanner: action.featureGroup,
       };
     }
 

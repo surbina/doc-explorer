@@ -25,6 +25,7 @@ function PendingReviewFeatures({ featureGroups }: PendingReviewFeaturesProps) {
           title="Flag"
           features={flags}
           footerActionType={DocumentStateActionTypes.CONFIRM_FEATURE}
+          featureGroup={FeaturesGroup.FLAG}
         />
       )}
       {problems.length > 0 && (
@@ -32,6 +33,7 @@ function PendingReviewFeatures({ featureGroups }: PendingReviewFeaturesProps) {
           title="Problem"
           features={problems}
           footerActionType={DocumentStateActionTypes.CONFIRM_FEATURE}
+          featureGroup={FeaturesGroup.PROBLEM}
         />
       )}
       {allergies.length > 0 && (
@@ -39,6 +41,7 @@ function PendingReviewFeatures({ featureGroups }: PendingReviewFeaturesProps) {
           title="Allergy"
           features={allergies}
           footerActionType={DocumentStateActionTypes.CONFIRM_FEATURE}
+          featureGroup={FeaturesGroup.ALLERGY}
         />
       )}
       {medications.length > 0 && (
@@ -46,6 +49,7 @@ function PendingReviewFeatures({ featureGroups }: PendingReviewFeaturesProps) {
           title="Medication"
           features={medications}
           footerActionType={DocumentStateActionTypes.CONFIRM_FEATURE}
+          featureGroup={FeaturesGroup.MEDICATION}
         />
       )}
     </>

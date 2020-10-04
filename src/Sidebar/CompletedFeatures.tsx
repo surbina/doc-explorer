@@ -13,6 +13,7 @@ function CompletedFeatures({ features }: CompletedFeaturesProps) {
       title="Done"
       features={features}
       footerActionType={DocumentStateActionTypes.UNCONFIRM_FEATURE}
+      featureGroup={null}
     />
   );
 }

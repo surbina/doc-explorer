@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { useDocumentDispatch } from '../DocumentState';
-import { Feature, DocumentStateActionTypes } from '../types';
+import { Feature, DocumentStateActionTypes, FeaturesGroup } from '../types';
 import ActionMenu from './ActionMenu';
 import {
   GroupItemWrapper,
@@ -15,12 +15,18 @@ import {
 interface GroupItemProps {
   isActive: boolean;
   feature: Feature;
+  featureGroup: FeaturesGroup | null;
   footerActionType:
     | DocumentStateActionTypes.CONFIRM_FEATURE
     | DocumentStateActionTypes.UNCONFIRM_FEATURE;
 }
 
-function GroupItem({ feature, isActive, footerActionType }: GroupItemProps) {
+function GroupItem({
+  feature,
+  featureGroup,
+  isActive,
+  footerActionType,
+}: GroupItemProps) {
   const [showAction, setShowAction] = React.useState(false);
 
   const dispatch = useDocumentDispatch();
@@ -45,6 +51,7 @@ function GroupItem({ feature, isActive, footerActionType }: GroupItemProps) {
           dispatch({
             type: DocumentStateActionTypes.SELECT_FEATURE,
             id: feature.id,
+            featureGroup,
           })
         }
         isActive={isActive}

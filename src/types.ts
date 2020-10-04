@@ -58,6 +58,7 @@ export interface DocumentState {
   hoveredFeature: string | null;
   pendingReviewFeatures: Array<string>;
   completedFeatures: Array<string>;
+  showBanner: FeaturesGroup | null;
 }
 
 export enum DocumentStateActionTypes {
@@ -72,6 +73,7 @@ export type DocumentStateAction =
   | {
       type: DocumentStateActionTypes.SELECT_FEATURE;
       id: string | null;
+      featureGroup: FeaturesGroup | null;
     }
   | {
       type: DocumentStateActionTypes.CONFIRM_FEATURE;

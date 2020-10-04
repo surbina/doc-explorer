@@ -1,19 +1,25 @@
 import * as React from 'react';
 
 import { useDocumentState } from '../DocumentState';
-import { Feature, DocumentStateActionTypes } from '../types';
+import { Feature, DocumentStateActionTypes, FeaturesGroup } from '../types';
 import GroupItem from './GroupItem';
 import { GroupWrapper, GroupTitle } from './styled';
 
 interface GroupProps {
   title: string;
   features: Array<Feature>;
+  featureGroup: FeaturesGroup | null;
   footerActionType:
     | DocumentStateActionTypes.CONFIRM_FEATURE
     | DocumentStateActionTypes.UNCONFIRM_FEATURE;
 }
 
-function Group({ title, features, footerActionType }: GroupProps) {
+function Group({
+  title,
+  features,
+  featureGroup,
+  footerActionType,
+}: GroupProps) {
   const { selectedFeature } = useDocumentState();
 
   return (
@@ -25,6 +31,7 @@ function Group({ title, features, footerActionType }: GroupProps) {
           isActive={selectedFeature === feature.id}
           feature={feature}
           footerActionType={footerActionType}
+          featureGroup={featureGroup}
         />
       ))}
     </GroupWrapper>

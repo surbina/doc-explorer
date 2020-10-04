@@ -33,8 +33,10 @@ export function useDocumentDispatch() {
 function getInitialState(document: Document): DocumentState {
   return {
     selectedFeature: null,
+    hoveredFeature: null,
     pendingReviewFeatures: Object.keys(document.features),
     completedFeatures: [],
+    showBanner: null,
   };
 }
 
