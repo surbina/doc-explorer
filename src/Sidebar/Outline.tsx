@@ -40,7 +40,7 @@ function Outline() {
   const {
     data: { features },
   } = useDocument((id as string) || '1'); //
-  const { pendingReviewFeatures } = useDocumentState();
+  const { pendingReviewFeatures, completedFeatures } = useDocumentState();
 
   return (
     <>
@@ -65,7 +65,9 @@ function Outline() {
           )}
         />
       ) : (
-        <CompletedFeatures />
+        <CompletedFeatures
+          features={completedFeatures.map((id) => features[id])}
+        />
       )}
     </>
   );

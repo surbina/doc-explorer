@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Feature, FeaturesGroup } from '../types';
+import { Feature, FeaturesGroup, DocumentStateActionTypes } from '../types';
 import Group from './Group';
 
 interface PendingReviewFeaturesProps {
@@ -20,11 +20,33 @@ function PendingReviewFeatures({ featureGroups }: PendingReviewFeaturesProps) {
 
   return (
     <>
-      {flags.length > 0 && <Group title="Flag" features={flags} />}
-      {problems.length > 0 && <Group title="Problem" features={problems} />}
-      {allergies.length > 0 && <Group title="Allergy" features={allergies} />}
+      {flags.length > 0 && (
+        <Group
+          title="Flag"
+          features={flags}
+          footerActionType={DocumentStateActionTypes.CONFIRM_FEATURE}
+        />
+      )}
+      {problems.length > 0 && (
+        <Group
+          title="Problem"
+          features={problems}
+          footerActionType={DocumentStateActionTypes.CONFIRM_FEATURE}
+        />
+      )}
+      {allergies.length > 0 && (
+        <Group
+          title="Allergy"
+          features={allergies}
+          footerActionType={DocumentStateActionTypes.CONFIRM_FEATURE}
+        />
+      )}
       {medications.length > 0 && (
-        <Group title="Medication" features={medications} />
+        <Group
+          title="Medication"
+          features={medications}
+          footerActionType={DocumentStateActionTypes.CONFIRM_FEATURE}
+        />
       )}
     </>
   );

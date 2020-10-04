@@ -15,9 +15,12 @@ import {
 interface GroupItemProps {
   isActive: boolean;
   feature: Feature;
+  footerActionType:
+    | DocumentStateActionTypes.CONFIRM_FEATURE
+    | DocumentStateActionTypes.UNCONFIRM_FEATURE;
 }
 
-function GroupItem({ feature, isActive }: GroupItemProps) {
+function GroupItem({ feature, isActive, footerActionType }: GroupItemProps) {
   const [showAction, setShowAction] = React.useState(false);
 
   const dispatch = useDocumentDispatch();
@@ -60,11 +63,13 @@ function GroupItem({ feature, isActive }: GroupItemProps) {
             href="#"
             onClick={() => {
               dispatch({
-                type: DocumentStateActionTypes.CONFIRM_FEATURE,
+                type: footerActionType,
                 id: feature.id,
               });
             }}>
-            Confirm
+            {footerActionType === DocumentStateActionTypes.CONFIRM_FEATURE
+              ? 'Confirm'
+              : 'Remove'}
           </GroupItemSubContentFooterButton>
         </GroupItemSubContentFooter>
       </GroupItemSubContent>

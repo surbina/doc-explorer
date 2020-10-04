@@ -19,6 +19,7 @@ function reducer(
     case DocumentStateActionTypes.CONFIRM_FEATURE: {
       return {
         ...state,
+        selectedFeature: null,
         pendingReviewFeatures: state.pendingReviewFeatures.filter(
           (featureId) => featureId !== action.id
         ),
@@ -29,8 +30,9 @@ function reducer(
     case DocumentStateActionTypes.UNCONFIRM_FEATURE: {
       return {
         ...state,
-        pendingReviewFeatures: [...state.completedFeatures, action.id],
-        completedFeatures: state.pendingReviewFeatures.filter(
+        selectedFeature: null,
+        pendingReviewFeatures: [...state.pendingReviewFeatures, action.id],
+        completedFeatures: state.completedFeatures.filter(
           (featureId) => featureId !== action.id
         ),
       };
