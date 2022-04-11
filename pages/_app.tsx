@@ -9,9 +9,22 @@ function DocumentExplorer({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Document explorer</title>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css"
+        />
       </Head>
       <Reset />
       <Fonts />
+      <a
+        className="github-fork-ribbon left-bottom fixed"
+        href="https://github.com/surbina/resto-explorer"
+        data-ribbon="Fork me on GitHub"
+        title="Fork me on GitHub"
+        target="_blank"
+        rel="noreferrer">
+        Fork me on GitHub
+      </a>
       <Component {...pageProps} />
     </>
   );
